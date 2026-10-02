@@ -12,13 +12,14 @@ import Markdown from "unplugin-vue-markdown/vite";
 
 import { VueRouterAutoImports } from "unplugin-vue-router";
 import VueRouter from "unplugin-vue-router/vite";
-import { defineConfig, loadEnv } from "vite";
+import { defineConfig } from "vite";
 import { createHtmlPlugin } from "vite-plugin-html";
 import { VitePWA } from "vite-plugin-pwa";
 import VueDevTools from "vite-plugin-vue-devtools";
 import Layouts from "vite-plugin-vue-layouts";
 import WebfontDownload from "vite-plugin-webfont-dl";
 import generateSitemap from "vite-ssg-sitemap";
+import { boardConfig } from "./board.config";
 import "vitest/config";
 
 const ratingProxyConfig = {
@@ -26,15 +27,14 @@ const ratingProxyConfig = {
   changeOrigin: true,
 };
 
-function dataProxyConfig(mode: string) {
-  const env = loadEnv(mode, __dirname, "BOARD_");
+function dataProxyConfig() {
   return {
-    target: env.BOARD_DATA_BASE_URL || "http://127.0.0.1:3000",
+    target: new URL(boardConfig.dataHost).origin,
     changeOrigin: true,
   };
 }
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig({
   resolve: {
     alias: {
       "~/": `${path.resolve(__dirname, "src")}/`,
@@ -42,6 +42,18 @@ export default defineConfig(({ mode }) => ({
   },
 
   plugins: [
+    {
+      name: "board-config",
+      transformIndexHtml: {
+        order: "pre",
+        handler: () => [{
+          tag: "script",
+          children: `window.BOARD_CONFIG = ${JSON.stringify(boardConfig).replaceAll("<", "\\u003c")};`,
+          injectTo: "head-prepend",
+        }],
+      },
+    },
+
     VueMacros({
       plugins: {
         vue: Vue({
@@ -202,30 +214,21 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: true,
     proxy: {
-      "/data": dataProxyConfig(mode),
+      "/data": dataProxyConfig(),
       "/rating-data": ratingProxyConfig,
     },
   },
 
   preview: {
     proxy: {
-      "/data": dataProxyConfig(mode),
+      "/data": dataProxyConfig(),
       "/rating-data": ratingProxyConfig,
     },
   },
 
   experimental: {
-    renderBuiltUrl(filename: string, { hostType, type }: { hostId: string; hostType: "js" | "css" | "html"; type: "public" | "asset" }) {
-      if (type === "public") {
-        return `__CDN_HOST__/${filename}`;
-      }
-      if (hostType === "js") {
-        return {
-          runtime: `window.__toAssetUrl(${JSON.stringify(filename)})`,
-        };
-      }
-
-      return `__CDN_HOST__/${filename}`;
+    renderBuiltUrl(filename: string) {
+      return `${boardConfig.cdnHost.replace(/\/+$/, "")}/${filename}`;
     },
   },
-}));
+});

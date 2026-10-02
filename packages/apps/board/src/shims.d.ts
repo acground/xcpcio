@@ -1,4 +1,5 @@
 declare interface Window {
+  BOARD_CONFIG: typeof import("../board.config")["boardConfig"];
   CDN_HOST: string;
   DATA_HOST: string;
   DATA_REGION: string;

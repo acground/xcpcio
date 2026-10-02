@@ -15,14 +15,14 @@
       }
 
       {
-        let CDN_HOST = "__CDN_HOST__";
+        let CDN_HOST = window.BOARD_CONFIG.cdnHost;
         CDN_HOST = normalizePath(CDN_HOST);
         window.CDN_HOST = CDN_HOST;
         window.__toAssetUrl = (url) => window.CDN_HOST + url;
       }
 
       try {
-        let DATA_HOST = __DATA_HOST__;
+        let DATA_HOST = window.BOARD_CONFIG.dataHost;
         DATA_HOST = normalizePath(DATA_HOST);
         window.DATA_HOST = DATA_HOST;
       } catch (e) {
@@ -30,14 +30,14 @@
       }
 
       try {
-        let DATA_REGION = __DATA_REGION__;
+        let DATA_REGION = window.BOARD_CONFIG.dataRegion;
         window.DATA_REGION = DATA_REGION;
       } catch (e) {
         window.DATA_REGION = "CN";
       }
 
       try {
-        let DEFAULT_LANG = __DEFAULT_LANG__;
+        let DEFAULT_LANG = window.BOARD_CONFIG.defaultLang;
         window.DEFAULT_LANG = DEFAULT_LANG;
       } catch (e) {
         window.DEFAULT_LANG = "en";
@@ -63,9 +63,10 @@
     <noscript>This website requires JavaScript to function properly. Please enable JavaScript to continue.</noscript>
     <script>
       try {
-        var umamiJSUrl = __UMAMI_JS_URL__;
-        var umamiWebsiteId = __UMAMI_WEBSITE_ID__;
+        var umamiJSUrl = window.BOARD_CONFIG.analytics.umamiScriptUrl;
+        var umamiWebsiteId = window.BOARD_CONFIG.analytics.umamiWebsiteId;
         (function () {
+          if (!umamiJSUrl || !umamiWebsiteId) return;
           var script = document.createElement("script");
           script.src = umamiJSUrl;
           script.defer = true;
@@ -76,9 +77,10 @@
       } catch (e) {}
 
       try {
-        var plausibleJSUrl = __PLAUSIBLE_JS_URL__;
-        var plausibleDataDomain = __PLAUSIBLE_DATA_DOMAIN__;
+        var plausibleJSUrl = window.BOARD_CONFIG.analytics.plausibleScriptUrl;
+        var plausibleDataDomain = window.BOARD_CONFIG.analytics.plausibleDomain;
         (function () {
+          if (!plausibleJSUrl || !plausibleDataDomain) return;
           var script = document.createElement("script");
           script.src = plausibleJSUrl;
           script.defer = true;
@@ -89,9 +91,10 @@
       } catch (e) {}
 
       try {
-        var baiduAnalyticsId = __BAIDU_ANALYTICS_ID__;
+        var baiduAnalyticsId = window.BOARD_CONFIG.analytics.baiduId;
         var _hmt = _hmt || [];
         (function () {
+          if (!baiduAnalyticsId) return;
           var hm = document.createElement("script");
           hm.src = `https://hm.baidu.com/hm.js?${baiduAnalyticsId}`;
           var s = document.getElementsByTagName("script")[0];
@@ -100,9 +103,9 @@
       } catch (e) {}
 
       try {
-        var googleAnalyticsId = __GOOGLE_ANALYTICS_ID__;
+        var googleAnalyticsId = window.BOARD_CONFIG.analytics.googleId;
         (function () {
-          if (!location.port) {
+          if (googleAnalyticsId && !location.port) {
             (function (i, s, o, g, r, a, m) {
               i["GoogleAnalyticsObject"] = r;
               (i[r] =
