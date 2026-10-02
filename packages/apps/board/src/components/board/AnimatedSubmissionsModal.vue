@@ -9,6 +9,15 @@ const props = defineProps<{
   rank: Rank;
 }>();
 
+type NameText = string | { getOrDefault: (lang?: string) => string };
+
+const { locale } = useI18n();
+
+function getDisplayName(value: NameText | { name: NameText }): string {
+  const name = typeof value === "object" && "name" in value ? value.name : value;
+  return typeof name === "string" ? name : name.getOrDefault(locale.value);
+}
+
 const rank = computed(() => props.rank);
 const submissions = computed(() => {
   const ss = rank.value.getSubmissions().sort(Submission.compare).reverse();
@@ -41,10 +50,10 @@ const submissions = computed(() => {
       continue;
     }
 
-    let displayName = team.name;
+    let displayName = getDisplayName(team.name);
 
     if (team.organization) {
-      displayName = `${team.organization} - ${displayName}`;
+      displayName = `${getDisplayName(team.organization)} - ${displayName}`;
     }
 
     const item: AnimatedSubmissionBlockItem = {
