@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema#
+name: Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  node-version: 18.x
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.node-version }}
+          registry-url: https://registry.npmjs.org/
+          cache: pnpm
+
+      - name: Install and Build
+        run: |
+          pnpm i
+          pnpm build
+
+      - name: Enable 404.html
+        run: |
+          cp ./packages/apps/board/dist/index.html ./packages/apps/board/dist/404.html
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.node-version }}
+          registry-url: https://registry.npmjs.org/
+          cache: pnpm
+
+      - name: Install
+        run: |
+          pnpm i
+          pnpm build:libs
+
+      - name: Lint
+        run: |
+          pnpm run lint
+
+      - name: Test Core
+        run: |
+          pushd ./packages/libs/core
+          npx vitest run
+          popd

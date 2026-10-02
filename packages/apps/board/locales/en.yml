@@ -1,0 +1,72 @@
+button:
+  about: About
+  back: Back
+  go: GO
+  home: Home
+  confirm: Confirm
+  cancel: Cancel
+  toggle_dark: Toggle dark mode
+  toggle_langs: Change languages
+intro:
+  desc: Opinionated Vite Starter Template
+  dynamic-route: Demo of dynamic route
+  hi: Hi, {name}!
+  aka: Also known as
+  whats-your-name: What's your name?
+not-found: Not found
+
+common:
+  loading: Loading
+  colon: ":"
+
+index:
+  start: StartTime
+  duration: Duration
+
+type_menu:
+  rank: Rank
+  submissions: Submissions
+  statistics: Statistics
+  balloon: Balloon
+  export: Export
+  resolver: Resolver
+  options: Options
+  awards: Awards
+  utility: Utility
+  countdown: Countdown
+
+standings:
+  start_time: Start
+  end_time: End
+  elapsed: Elapsed
+  remaining: Remaining
+
+  place: Place
+  team: Team
+  solved: Solved
+  penalty: Penalty
+  dirt: Dirt
+  se: SE
+
+  statistics:
+    submitted: Submitted
+    attempted: Attempted
+    accepted: Accepted
+    dirt: Dirt
+    se: SE
+    first_solved: First Solved
+    last_solved: Last Solved
+    head_data:
+      problems: Problems
+      teams: Teams
+      submissions: Submissions
+    submit_heatmap: Submit Heatmap
+
+  options:
+    calculation_of_penalty: Calculation Of Penalty
+    in_minutes: in minutes
+    in_seconds: in seconds
+    accumulate_in_seconds_and_finally_to_the_minute: Accumulate in seconds and finally to the minute
+
+submissions:
+  total_submissions: Total Submissions

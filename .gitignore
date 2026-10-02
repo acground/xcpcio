@@ -1,0 +1,20 @@
+# misc
+.cache
+.DS_Store
+
+node_modules/
+dist/
+coverage/
+lib-cov/
+logs/
+temp/
+
+*.less.d.ts
+
+*.log
+*.tgz
+
+.env.local
+
+.next
+out

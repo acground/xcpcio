@@ -1,0 +1,67 @@
+{
+  "name": "@xcpcio/types",
+  "version": "0.55.2",
+  "description": "XCPCIO Types",
+  "author": "Dup4 <lyuzhi.pan@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/xcpcio/xcpcio",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xcpcio/xcpcio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xcpcio/xcpcio/issues"
+  },
+  "keywords": [
+    "ICPC",
+    "CCPC"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "start": "esmo src/index.ts",
+    "test": "vitest",
+    "lint": "run-p lint:*",
+    "lint:build": "# tsc --noEmit"
+  },
+  "devDependencies": {
+    "@babel/types": "catalog:",
+    "@types/node": "catalog:",
+    "@typescript-eslint/eslint-plugin": "catalog:",
+    "@typescript-eslint/parser": "catalog:",
+    "bumpp": "catalog:",
+    "eslint": "catalog:",
+    "esmo": "catalog:",
+    "git-repo-info": "catalog:",
+    "npm-run-all": "catalog:",
+    "pnpm": "catalog:",
+    "taze": "catalog:",
+    "typescript": "catalog:",
+    "unbuild": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  }
+}

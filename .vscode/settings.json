@@ -1,0 +1,121 @@
+{
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.formatOnSave": true
+  },
+
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": "locales",
+  "i18n-ally.sortKeys": true,
+
+  // Disable the default formatter
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+
+  // Auto fix
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
+  },
+
+  // Silent the stylistic rules in you IDE, but still auto fix them
+  "eslint.rules.customizations": [
+    { "rule": "style/*", "severity": "off", "fixable": true },
+    { "rule": "format/*", "severity": "off", "fixable": true },
+    { "rule": "*-indent", "severity": "off", "fixable": true },
+    { "rule": "*-spacing", "severity": "off", "fixable": true },
+    { "rule": "*-spaces", "severity": "off", "fixable": true },
+    { "rule": "*-order", "severity": "off", "fixable": true },
+    { "rule": "*-dangle", "severity": "off", "fixable": true },
+    { "rule": "*-newline", "severity": "off", "fixable": true },
+    { "rule": "*quotes", "severity": "off", "fixable": true },
+    { "rule": "*semi", "severity": "off", "fixable": true }
+  ],
+
+  // Enable eslint for all supported languages
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml",
+    "toml",
+    "xml",
+    "gql",
+    "graphql",
+    "astro",
+    "svelte",
+    "css",
+    "less",
+    "scss",
+    "pcss",
+    "postcss"
+  ],
+
+  "cSpell.words": [
+    "antd",
+    "antfu",
+    "Attributify",
+    "buildx",
+    "bumpp",
+    "ccpc",
+    "codeforces",
+    "composables",
+    "contlen",
+    "dedupe",
+    "Delivr",
+    "demi",
+    "DOCKERHUB",
+    "esmo",
+    "flowbite",
+    "fontawesome",
+    "fortawesome",
+    "frontmatter",
+    "fsxx",
+    "gsap",
+    "highcharts",
+    "iconify",
+    "icpc",
+    "Immer",
+    "immerable",
+    "intlify",
+    "metas",
+    "nocheck",
+    "noopener",
+    "nums",
+    "pageview",
+    "papaparse",
+    "pinia",
+    "pnpm",
+    "prettierrc",
+    "shiki",
+    "shikijs",
+    "sizecheck",
+    "stnd",
+    "tailwindcss",
+    "tanstack",
+    "taze",
+    "typecheck",
+    "unhead",
+    "unocss",
+    "unplugin",
+    "vite",
+    "vitesse",
+    "vueuse",
+    "Webfont",
+    "XCPC",
+    "XCPCIO"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "ESNext"
+    ],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "paths": {
+      "@xcpcio/types": [
+        "./packages/libs/types/src/index.ts"
+      ],
+      "@xcpcio/core": [
+        "./packages/libs/core/src/index.ts"
+      ]
+    },
+    "resolveJsonModule": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "importHelpers": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "./packages/**/*.ts"
+  ],
+  "exclude": [
+    "**/dist/**",
+    "node_modules",
+    "./packages/**/*.test.ts"
+  ]
+}
