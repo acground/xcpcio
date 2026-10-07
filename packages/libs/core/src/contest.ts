@@ -301,7 +301,10 @@ export function createContest(contestJSON: IContest): Contest {
     }
   })();
 
-  c.organization = contestJSON.organization;
+  c.organization = contestJSON.organization === "组织"
+    ? "Organization"
+    : contestJSON.organization
+      ?? (contestJSON.options?.enable_organization ? "Organization" : undefined);
 
   {
     const g = new Group();

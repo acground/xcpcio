@@ -166,6 +166,8 @@ onMounted(() => {
         >
           <div
             ref="resolverRef"
+            class="resolver-scroll"
+            tabindex="0"
             h-full
             overflow-y-auto
           >
@@ -198,6 +200,14 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.resolver-scroll {
+  scrollbar-width: none;
+}
+
+.resolver-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 .resolver-move,
 .resolver-enter-active,
 .resolver-leave-active {
